@@ -437,93 +437,158 @@ const App = () => {
     },
   ];
 
+  const routes = [
+    { region: "Azure East Asia", load: 28, latency: "186ms", status: "稳定" },
+    { region: "OpenAI US-East", load: 35, latency: "142ms", status: "平稳" },
+    { region: "AWS Tokyo", load: 22, latency: "163ms", status: "冗余中" },
+    { region: "Gemini APAC", load: 15, latency: "151ms", status: "健康" },
+  ];
+
+  const STATUS_PAGE_ID = import.meta.env.VITE_STATUS_PAGE_ID || "1";
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
       {/* Hero Section */}
       <motion.header 
-        className="relative pt-40 pb-20 lg:pt-52 lg:pb-32 overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-50"
+        className="relative overflow-hidden bg-slate-950 text-white"
         style={{ y: yBg }}
       >
-        {/* Dynamic Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none opacity-50">
-            <motion.div 
-              className="absolute top-1/4 left-[10%] w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply blur-3xl opacity-30" 
-              animate={{ x: [-20, 20, -20], y: [-20, 20, -20] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div 
-              className="absolute bottom-1/4 right-[15%] w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply blur-3xl opacity-30" 
-              animate={{ x: [20, -20, 20], y: [20, -20, 20] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            />
-            <motion.div 
-              className="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-200 rounded-full mix-blend-multiply blur-3xl opacity-20" 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            />
+        {/* Structured background instead of floating blobs */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 opacity-80 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.18),transparent_32%),radial-gradient(circle_at_80%_5%,rgba(14,165,233,0.16),transparent_30%),linear-gradient(120deg,rgba(255,255,255,0.04),rgba(255,255,255,0))]" />
+          <div 
+            className="absolute inset-0 pointer-events-none opacity-30"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+              backgroundSize: "120px 120px"
+            }}
+          />
+          <div className="absolute -right-20 -bottom-24 w-80 h-80 bg-blue-500/15 blur-3xl rounded-full" />
+          <div className="absolute -left-16 -top-24 w-72 h-72 bg-cyan-500/10 blur-3xl rounded-full" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <motion.div 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <span className="relative flex h-2 w-2">
-              <motion.span 
-                className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-                animate={{ scale: [1, 1.5, 1], opacity: [0.75, 0, 0.75] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              ></motion.span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">Systems Operational</span>
-          </motion.div>
-          
-          <motion.h1 
-            className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            欢迎来到 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">ZEN-AI VIP</span>
-          </motion.h1>
-          <motion.p 
-            className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-10 font-light"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
-          >
-            企业级 API 中转服务，专为高并发与稳定性打造。
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col md:flex-row justify-center items-center gap-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-          >
-            <motion.div 
-              className="px-8 py-4 bg-white rounded-2xl shadow-lg border border-slate-100 flex items-center gap-3"
-              whileHover={{ scale: 1.05, boxShadow: "0 15px 30px -8px rgba(0,0,0,0.1)" }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="space-y-6"
             >
-              <div className="text-left">
-                <p className="text-xs text-slate-400 uppercase font-bold">基础充值单价</p>
-                <p className="text-2xl font-bold text-slate-800">0.1 <span className="text-sm font-normal text-slate-500">RMB / USD</span></p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[11px] uppercase tracking-[0.18em]">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.2)] animate-pulse" />
+                运营稳定 · 实时监控中
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-black leading-[1.05] tracking-tight">
+                ZEN-AI VIP
+                <br className="hidden md:block" />
+                大模型中转站。
+              </h1>
+              <p className="text-lg text-slate-300 max-w-xl">
+                面向企业的 API 调度层，覆盖 Azure / OpenAI / AWS / Gemini，多云路由、限流熔断与密钥托管开箱即用。
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  "99.95% SLA，多活架构与独立灰度",
+                  "多云路由：Azure · OpenAI · AWS · Gemini",
+                  "分钟级扩缩容，自动限流护航"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                    <CheckCircle2 size={18} className="text-emerald-300" />
+                    <span className="text-sm text-slate-200">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <a 
+                  href="https://vip.zen-ai.top/login" 
+                  className="px-7 py-3 rounded-xl bg-white text-slate-900 font-semibold shadow-[0_20px_50px_-20px_rgba(0,0,0,0.45)] hover:-translate-y-1 transition-transform duration-200"
+                >
+                  立即接入
+                </a>
+                <a 
+                  href="#pricing" 
+                  className="px-7 py-3 rounded-xl border border-white/25 text-white hover:bg-white/5 transition-colors duration-200"
+                >
+                  查看费率
+                </a>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                {[
+                  { label: "过去 24h 路由", value: "1.8B", sub: "请求转发" },
+                  { label: "平均延迟", value: "142 ms", sub: "跨区域调度" },
+                  { label: "金融级 SLA", value: "99.95%", sub: "全年可用" },
+                ].map((stat, idx) => (
+                  <div key={idx} className="rounded-2xl bg-white/5 border border-white/10 px-4 py-4">
+                    <p className="text-xs text-slate-300">{stat.label}</p>
+                    <p className="text-2xl font-bold mt-2">{stat.value}</p>
+                    <p className="text-xs text-slate-400 mt-1">{stat.sub}</p>
+                  </div>
+                ))}
               </div>
             </motion.div>
-            <motion.a 
-              href="#pricing" 
-              className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-semibold shadow-xl shadow-blue-500/30 hover:bg-blue-700 transition-all transform"
-              whileHover={{ scale: 1.05, y: -5, boxShadow: "0 15px 30px -8px rgba(59, 130, 246, 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-white rounded-3xl shadow-2xl border border-slate-100/70 p-8 relative overflow-hidden"
             >
-              查看详细费率
-            </motion.a>
-          </motion.div>
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400" />
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="text-xs uppercase font-semibold text-slate-400">实时路由快照</p>
+                  <p className="text-lg font-bold text-slate-900 mt-1">Zen Relay Status</p>
+                </div>
+                <div className="flex items-center gap-2 text-emerald-600 text-sm font-semibold">
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  正常
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {routes.map((route, idx) => (
+                  <div key={idx} className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">{route.region}</p>
+                      <p className="text-xs text-slate-500">延迟 {route.latency}</p>
+                    </div>
+                    <div className="flex-1">
+                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                          style={{ width: `${route.load}%` }}
+                        />
+                      </div>
+                    </div>
+                    <span className="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                      {route.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 grid grid-cols-3 gap-3 text-xs text-slate-600">
+                <div className="rounded-xl bg-slate-50 border border-slate-100 px-4 py-3">
+                  <p className="font-semibold text-slate-900">独享 IP 池</p>
+                  <p className="text-slate-500 mt-1">隔离接入，避免抖动</p>
+                </div>
+                <div className="rounded-xl bg-slate-50 border border-slate-100 px-4 py-3">
+                  <p className="font-semibold text-slate-900">密钥托管</p>
+                  <p className="text-slate-500 mt-1">多重加密与审计</p>
+                </div>
+                <div className="rounded-xl bg-slate-50 border border-slate-100 px-4 py-3">
+                  <p className="font-semibold text-slate-900">异常熔断</p>
+                  <p className="text-slate-500 mt-1">分钟级限流切换</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </motion.header>
 
@@ -531,14 +596,32 @@ const App = () => {
       <section id="pricing" className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
+            className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-12"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">灵活的资源分组</h2>
-            <p className="text-slate-500">根据您的业务需求选择最合适的 API 通道</p>
+            <div className="space-y-3 max-w-2xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">灵活的资源分组</h2>
+              <p className="text-slate-600">
+                从低价测试到生产稳态、企业 EA、原生 OpenAI / AWS / Gemini，分组计费、并发限额与独立密钥一站配置。
+              </p>
+              <div className="flex flex-wrap gap-2 text-sm text-slate-500">
+                <span className="px-3 py-1 rounded-full bg-slate-100">多币种结算</span>
+                <span className="px-3 py-1 rounded-full bg-slate-100">账期对账</span>
+                <span className="px-3 py-1 rounded-full bg-slate-100">独立子账户</span>
+                <span className="px-3 py-1 rounded-full bg-slate-100">0.1 元 / 1 USD</span>
+              </div>
+            </div>
+            <a 
+              href="https://t.me/kimojisatan" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold shadow-sm hover:-translate-y-0.5 transition-transform"
+            >
+              联系销售咨询
+            </a>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -550,47 +633,69 @@ const App = () => {
       </section>
 
       {/* Status Monitor Section */}
-      <section id="status" className="py-20 bg-slate-50 border-y border-slate-100 relative">
-        <div className="max-w-5xl mx-auto px-6">
+      <section id="status" className="py-20 bg-gradient-to-b from-slate-50 to-white relative">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            className="flex items-center justify-between mb-8"
-            initial={{ opacity: 0, y: 50 }}
+            className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-              <Activity className="text-green-500" />
-              服务状态实时监控
-            </h2>
-            <a href="https://status.zen-ai.top/" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline">
-              查看完整历史 &rarr;
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <Activity className="text-emerald-500" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Live Monitor</p>
+                <h2 className="text-2xl font-bold text-slate-900">服务状态与合规</h2>
+              </div>
+            </div>
+            <a href="https://status.zen-ai.top/status/1" target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:text-blue-700">
+              查看完整历史 →
             </a>
           </motion.div>
-          
-          <motion.div 
-            className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden p-1 h-96 relative"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {iframeLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm z-10 rounded-2xl">
-                <Loader2 className="animate-spin text-blue-600" size={48} />
-              </div>
-            )}
-            <iframe 
-              src="https://status.zen-ai.top/status/1"
-              title="Service Status"
-              className="w-full h-full rounded-xl border-0 relative z-0"
-              loading="lazy"
-              onLoad={() => setIframeLoading(false)}
-            />
-            <div className="absolute bottom-4 right-4 pointer-events-none opacity-50 text-xs text-slate-400 z-10">
-               Live Monitor
-             </div>
-          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              {[
+                { title: "多云冗余", desc: "Azure / OpenAI / AWS / Gemini 独立路由池，自动切换" },
+                { title: "金融级 SLA", desc: "全年 99.95% 目标，自动熔断与限流护航" },
+                { title: "合规隔离", desc: "数据不落盘，动态令牌化与可审计日志" },
+                { title: "实时可视", desc: "状态页由 Uptime Kuma 驱动，可随时查看全局健康度" },
+              ].map((item, idx) => (
+                <div key={idx} className="rounded-2xl bg-white border border-slate-200 px-4 py-4 shadow-sm">
+                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                  <p className="text-sm text-slate-600 mt-1">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <motion.div 
+              className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden p-1 min-h-[420px] relative"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {iframeLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm z-10 rounded-3xl">
+                  <Loader2 className="animate-spin text-blue-600" size={48} />
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50 pointer-events-none" />
+              <iframe 
+                src="https://status.zen-ai.top/status/1"
+                title="Service Status"
+                className="w-full h-full rounded-2xl border-0 relative z-0 bg-white"
+                loading="lazy"
+                onLoad={() => setIframeLoading(false)}
+              />
+              <div className="absolute bottom-4 right-4 pointer-events-none opacity-60 text-xs text-slate-400 z-10">
+                 Live Monitor · Uptime Kuma
+               </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -598,32 +703,52 @@ const App = () => {
       <section id="access" className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
+            className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">站点访问入口</h2>
-            <p className="text-slate-500">请根据您的用户类型选择登录站点</p>
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2">站点访问入口</h2>
+              <p className="text-slate-600">根据角色选择入口，权限、额度与白名单策略分层管理。</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a 
+                href="https://zen-ai-doc.apifox.cn/c" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-md hover:-translate-y-0.5 transition-transform"
+              >
+                快速接入文档
+              </a>
+              <a 
+                href="https://t.me/kimojisatan" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-800 font-semibold hover:-translate-y-0.5 transition-transform"
+              >
+                企业咨询
+              </a>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <LinkCard 
               title="企业用户站点" 
               url="https://vip.zen-ai.top" 
-              desc="VIP 专属通道，企业级管理后台，支持高并发密钥管理。"
+              desc="独享通道、密钥分组、审计日志，可配置账期与白名单。"
               primary={true}
             />
             <LinkCard 
               title="个人用户站点" 
               url="https://zen-ai.top" 
-              desc="个人开发者首选，注册即送测试额度，轻量级使用体验。"
+              desc="注册即用，默认限流保护，适合开发者与小型团队。"
             />
             <LinkCard 
               title="空白反代接口" 
               url="https://api.144096.xyz" 
-              desc="纯净 API 接入点，适用于兼容 OpenAI 协议的各类客户端。"
+              desc="纯净 API 入口，兼容 OpenAI 协议，可自带客户端密钥。"
             />
           </div>
         </div>
