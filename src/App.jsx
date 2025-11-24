@@ -447,28 +447,51 @@ const App = () => {
   const STATUS_PAGE_ID = import.meta.env.VITE_STATUS_PAGE_ID || "1";
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+    <div className="min-h-screen bg-white font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
       {/* Hero Section */}
       <motion.header 
-        className="relative overflow-hidden bg-slate-950 text-white"
+        className="relative overflow-hidden bg-white text-slate-900"
         style={{ y: yBg }}
       >
-        {/* Structured background instead of floating blobs */}
+        {/* Structured background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 opacity-80 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.18),transparent_32%),radial-gradient(circle_at_80%_5%,rgba(14,165,233,0.16),transparent_30%),linear-gradient(120deg,rgba(255,255,255,0.04),rgba(255,255,255,0))]" />
+          <div className="absolute inset-0 opacity-100 bg-[radial-gradient(circle_at_15%_20%,rgba(79,70,229,0.10),transparent_34%),radial-gradient(circle_at_80%_5%,rgba(14,165,233,0.10),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.85),rgba(255,255,255,0.6))]" />
           <div 
-            className="absolute inset-0 pointer-events-none opacity-30"
+            className="absolute inset-0 pointer-events-none opacity-15"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+                "linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px)",
               backgroundSize: "120px 120px"
             }}
           />
-          <div className="absolute -right-20 -bottom-24 w-80 h-80 bg-blue-500/15 blur-3xl rounded-full" />
-          <div className="absolute -left-16 -top-24 w-72 h-72 bg-cyan-500/10 blur-3xl rounded-full" />
+          <div className="absolute -right-28 -bottom-32 w-96 h-96 bg-indigo-100/60 blur-3xl rounded-full" />
+          <div className="absolute -left-20 -top-32 w-80 h-80 bg-cyan-100/55 blur-3xl rounded-full" />
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/80 to-transparent" />
+          <motion.div 
+            className="absolute inset-x-[-30%] top-24 h-48 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-3xl"
+            initial={{ x: "-25%" }}
+            animate={{ x: "25%" }}
+            transition={{ duration: 8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute left-[12%] bottom-16 w-48 h-48 rounded-full border border-blue-200/50"
+            style={{ boxShadow: "0 0 80px 10px rgba(59,130,246,0.08)" }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div 
+            className="absolute right-[10%] top-12 w-28 h-28 rounded-full bg-cyan-200/40 blur-2xl"
+            animate={{ y: [0, 20, -10, 0], opacity: [0.6, 0.4, 0.5, 0.6] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute left-[6%] top-1/3 w-32 h-32 rounded-full bg-indigo-200/35 blur-2xl"
+            animate={{ y: [10, -12, 18, 10], opacity: [0.5, 0.35, 0.45, 0.5] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 lg:py-32">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-18 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -476,18 +499,18 @@ const App = () => {
               transition={{ duration: 0.7 }}
               className="space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[11px] uppercase tracking-[0.18em]">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.2)] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-slate-200 text-[11px] uppercase tracking-[0.18em] shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.18)] animate-pulse" />
                 运营稳定 · 实时监控中
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-black leading-[1.05] tracking-tight">
+              <h1 className="text-[40px] md:text-[64px] font-black leading-[1.02] tracking-tight text-slate-900 drop-shadow-[0_10px_40px_rgba(15,23,42,0.08)]">
                 ZEN-AI VIP
                 <br className="hidden md:block" />
                 大模型中转站。
               </h1>
-              <p className="text-lg text-slate-300 max-w-xl">
-                面向企业的 API 调度层，覆盖 Azure / OpenAI / AWS / Gemini，多云路由、限流熔断与密钥托管开箱即用。
+              <p className="text-lg text-slate-600 max-w-2xl">
+                企业级 API 调度层，覆盖 Azure / OpenAI / AWS / Gemini；多云路由、熔断限流、密钥托管一站托付。
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -496,23 +519,28 @@ const App = () => {
                   "多云路由：Azure · OpenAI · AWS · Gemini",
                   "分钟级扩缩容，自动限流护航"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
-                    <CheckCircle2 size={18} className="text-emerald-300" />
-                    <span className="text-sm text-slate-200">{item}</span>
-                  </div>
+                  <motion.div 
+                    key={idx} 
+                    className="flex items-center gap-3 bg-white border border-slate-200/80 rounded-2xl px-4 py-3 shadow-[0_14px_30px_-18px_rgba(15,23,42,0.35)]"
+                    whileHover={{ y: -4, boxShadow: "0 22px 40px -24px rgba(15,23,42,0.4)" }}
+                    transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  >
+                    <CheckCircle2 size={18} className="text-emerald-500" />
+                    <span className="text-sm text-slate-700">{item}</span>
+                  </motion.div>
                 ))}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <a 
                   href="https://vip.zen-ai.top/login" 
-                  className="px-7 py-3 rounded-xl bg-white text-slate-900 font-semibold shadow-[0_20px_50px_-20px_rgba(0,0,0,0.45)] hover:-translate-y-1 transition-transform duration-200"
+                  className="px-7 py-3 rounded-xl bg-slate-900 text-white font-semibold shadow-[0_20px_50px_-20px_rgba(15,23,42,0.6)] hover:-translate-y-1 transition-transform duration-200"
                 >
                   立即接入
                 </a>
                 <a 
                   href="#pricing" 
-                  className="px-7 py-3 rounded-xl border border-white/25 text-white hover:bg-white/5 transition-colors duration-200"
+                  className="px-7 py-3 rounded-xl border border-slate-200 text-slate-900 bg-white hover:bg-white/90 transition-colors duration-200 shadow-[0_12px_30px_-20px_rgba(15,23,42,0.35)]"
                 >
                   查看费率
                 </a>
@@ -524,10 +552,10 @@ const App = () => {
                   { label: "平均延迟", value: "142 ms", sub: "跨区域调度" },
                   { label: "金融级 SLA", value: "99.95%", sub: "全年可用" },
                 ].map((stat, idx) => (
-                  <div key={idx} className="rounded-2xl bg-white/5 border border-white/10 px-4 py-4">
-                    <p className="text-xs text-slate-300">{stat.label}</p>
-                    <p className="text-2xl font-bold mt-2">{stat.value}</p>
-                    <p className="text-xs text-slate-400 mt-1">{stat.sub}</p>
+                  <div key={idx} className="rounded-2xl bg-white border border-slate-200 px-4 py-4 shadow-[0_18px_40px_-24px_rgba(15,23,42,0.45)]">
+                    <p className="text-xs text-slate-500">{stat.label}</p>
+                    <p className="text-2xl font-bold mt-2 text-slate-900">{stat.value}</p>
+                    <p className="text-xs text-slate-500 mt-1">{stat.sub}</p>
                   </div>
                 ))}
               </div>
@@ -538,6 +566,7 @@ const App = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white rounded-3xl shadow-2xl border border-slate-100/70 p-8 relative overflow-hidden"
+              whileHover={{ y: -6, boxShadow: "0 30px 70px -35px rgba(15,23,42,0.45)" }}
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400" />
               <div className="flex items-center justify-between mb-6">
