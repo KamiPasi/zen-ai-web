@@ -437,13 +437,14 @@ const App = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+    <div className="relative min-h-screen bg-transparent font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+      <Particles className="z-0" />
+      <div className="relative z-10">
       {/* Hero Section */}
       <motion.header 
-        className="relative z-10 overflow-hidden bg-white text-slate-900 min-h-screen flex items-center"
+        className="relative overflow-hidden bg-transparent text-slate-900 min-h-screen flex items-center"
         style={{ y: yBg }}
       >
-        <Particles />
         <div className="relative z-10 w-full">
           <div className="max-w-5xl mx-auto px-6 py-24 lg:py-28 flex flex-col items-center text-center gap-9">
             <motion.div
@@ -493,7 +494,7 @@ const App = () => {
                 whileTap={{ scale: 0.98 }}
                 className="px-7 py-3 rounded-full border border-slate-200 text-slate-900 bg-white hover:bg-slate-50 transition-colors duration-200 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.35)]"
               >
-                Explore use cases
+                查看定价
               </motion.a>
             </div>
           </div>
@@ -501,7 +502,7 @@ const App = () => {
       </motion.header>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-white relative">
+      <section id="pricing" className="py-20 bg-transparent relative">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-12"
@@ -541,7 +542,7 @@ const App = () => {
       </section>
 
       {/* Status Monitor Section */}
-      <section id="status" className="py-20 bg-gradient-to-b from-slate-50 to-white relative">
+      <section id="status" className="py-20 bg-transparent relative">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10"
@@ -608,7 +609,7 @@ const App = () => {
       </section>
 
       {/* Access Portals */}
-      <section id="access" className="py-20 bg-white relative">
+      <section id="access" className="py-20 bg-transparent relative">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10"
@@ -734,6 +735,7 @@ const App = () => {
           </div>
         </div>
       </footer>
+    </div>
     </div>
   );
 };
