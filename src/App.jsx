@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Activity, 
   ExternalLink, 
@@ -7,12 +7,11 @@ import {
   ChevronRight,
   CheckCircle2,
   AlertCircle,
-  Menu,
-  X,
   Loader2,
   Globe // Fixed: Added missing Globe import
 } from 'lucide-react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Particles from './components/Particles';
 
 /**
  * ZEN-AI VIP Official Website - Fixed Version
@@ -437,186 +436,66 @@ const App = () => {
     },
   ];
 
-  const routes = [
-    { region: "Azure East Asia", load: 28, latency: "186ms", status: "稳定" },
-    { region: "OpenAI US-East", load: 35, latency: "142ms", status: "平稳" },
-    { region: "AWS Tokyo", load: 22, latency: "163ms", status: "冗余中" },
-    { region: "Gemini APAC", load: 15, latency: "151ms", status: "健康" },
-  ];
-
-  const STATUS_PAGE_ID = import.meta.env.VITE_STATUS_PAGE_ID || "1";
-
   return (
     <div className="min-h-screen bg-white font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
       {/* Hero Section */}
       <motion.header 
-        className="relative overflow-hidden bg-white text-slate-900"
+        className="relative z-10 overflow-hidden bg-white text-slate-900 min-h-screen flex items-center"
         style={{ y: yBg }}
       >
-        {/* Structured background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 opacity-100 bg-[radial-gradient(circle_at_15%_20%,rgba(79,70,229,0.10),transparent_34%),radial-gradient(circle_at_80%_5%,rgba(14,165,233,0.10),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.85),rgba(255,255,255,0.6))]" />
-          <div 
-            className="absolute inset-0 pointer-events-none opacity-15"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px)",
-              backgroundSize: "120px 120px"
-            }}
-          />
-          <div className="absolute -right-28 -bottom-32 w-96 h-96 bg-indigo-100/60 blur-3xl rounded-full" />
-          <div className="absolute -left-20 -top-32 w-80 h-80 bg-cyan-100/55 blur-3xl rounded-full" />
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/80 to-transparent" />
-          <motion.div 
-            className="absolute inset-x-[-30%] top-24 h-48 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-3xl"
-            initial={{ x: "-25%" }}
-            animate={{ x: "25%" }}
-            transition={{ duration: 8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute left-[12%] bottom-16 w-48 h-48 rounded-full border border-blue-200/50"
-            style={{ boxShadow: "0 0 80px 10px rgba(59,130,246,0.08)" }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.div 
-            className="absolute right-[10%] top-12 w-28 h-28 rounded-full bg-cyan-200/40 blur-2xl"
-            animate={{ y: [0, 20, -10, 0], opacity: [0.6, 0.4, 0.5, 0.6] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute left-[6%] top-1/3 w-32 h-32 rounded-full bg-indigo-200/35 blur-2xl"
-            animate={{ y: [10, -12, 18, 10], opacity: [0.5, 0.35, 0.45, 0.5] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          />
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-18 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <Particles />
+        <div className="relative z-10 w-full">
+          <div className="max-w-5xl mx-auto px-6 py-24 lg:py-28 flex flex-col items-center text-center gap-9">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="space-y-6"
+              initial={{ opacity: 0, y: 18, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.65, delay: 0.1, type: "spring", stiffness: 320, damping: 26 }}
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/70 border border-slate-200 shadow-sm backdrop-blur"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-slate-200 text-[11px] uppercase tracking-[0.18em] shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.18)] animate-pulse" />
-                运营稳定 · 实时监控中
-              </div>
+              <ZenLogo className="w-7 h-7 text-blue-600" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                Zen-AI Relay
+              </span>
+            </motion.div>
 
-              <h1 className="text-[40px] md:text-[64px] font-black leading-[1.02] tracking-tight text-slate-900 drop-shadow-[0_10px_40px_rgba(15,23,42,0.08)]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.18 }}
+              className="space-y-5"
+            >
+              <h1 className="text-[42px] sm:text-[56px] md:text-[76px] font-black leading-[1.03] tracking-tight text-slate-900">
                 ZEN-AI VIP
-                <br className="hidden md:block" />
-                大模型中转站。
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl">
-                企业级 API 调度层，覆盖 Azure / OpenAI / AWS / Gemini；多云路由、熔断限流、密钥托管一站托付。
+              <p className="text-xl md:text-2xl text-slate-600 font-medium">
+                致力于为企业和开发者提供最稳定、最高效的 AI 模型 API 中转服务。
               </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  "99.95% SLA，多活架构与独立灰度",
-                  "多云路由：Azure · OpenAI · AWS · Gemini",
-                  "分钟级扩缩容，自动限流护航"
-                ].map((item, idx) => (
-                  <motion.div 
-                    key={idx} 
-                    className="flex items-center gap-3 bg-white border border-slate-200/80 rounded-2xl px-4 py-3 shadow-[0_14px_30px_-18px_rgba(15,23,42,0.35)]"
-                    whileHover={{ y: -4, boxShadow: "0 22px 40px -24px rgba(15,23,42,0.4)" }}
-                    transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                  >
-                    <CheckCircle2 size={18} className="text-emerald-500" />
-                    <span className="text-sm text-slate-700">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <a 
-                  href="https://vip.zen-ai.top/login" 
-                  className="px-7 py-3 rounded-xl bg-slate-900 text-white font-semibold shadow-[0_20px_50px_-20px_rgba(15,23,42,0.6)] hover:-translate-y-1 transition-transform duration-200"
-                >
-                  立即接入
-                </a>
-                <a 
-                  href="#pricing" 
-                  className="px-7 py-3 rounded-xl border border-slate-200 text-slate-900 bg-white hover:bg-white/90 transition-colors duration-200 shadow-[0_12px_30px_-20px_rgba(15,23,42,0.35)]"
-                >
-                  查看费率
-                </a>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-                {[
-                  { label: "过去 24h 路由", value: "1.8B", sub: "请求转发" },
-                  { label: "平均延迟", value: "142 ms", sub: "跨区域调度" },
-                  { label: "金融级 SLA", value: "99.95%", sub: "全年可用" },
-                ].map((stat, idx) => (
-                  <div key={idx} className="rounded-2xl bg-white border border-slate-200 px-4 py-4 shadow-[0_18px_40px_-24px_rgba(15,23,42,0.45)]">
-                    <p className="text-xs text-slate-500">{stat.label}</p>
-                    <p className="text-2xl font-bold mt-2 text-slate-900">{stat.value}</p>
-                    <p className="text-xs text-slate-500 mt-1">{stat.sub}</p>
-                  </div>
-                ))}
-              </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-3xl shadow-2xl border border-slate-100/70 p-8 relative overflow-hidden"
-              whileHover={{ y: -6, boxShadow: "0 30px 70px -35px rgba(15,23,42,0.45)" }}
-            >
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400" />
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <p className="text-xs uppercase font-semibold text-slate-400">实时路由快照</p>
-                  <p className="text-lg font-bold text-slate-900 mt-1">Zen Relay Status</p>
-                </div>
-                <div className="flex items-center gap-2 text-emerald-600 text-sm font-semibold">
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  正常
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {routes.map((route, idx) => (
-                  <div key={idx} className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-sm font-semibold text-slate-900">{route.region}</p>
-                      <p className="text-xs text-slate-500">延迟 {route.latency}</p>
-                    </div>
-                    <div className="flex-1">
-                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-blue-500 to-cyan-400"
-                          style={{ width: `${route.load}%` }}
-                        />
-                      </div>
-                    </div>
-                    <span className="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
-                      {route.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 grid grid-cols-3 gap-3 text-xs text-slate-600">
-                <div className="rounded-xl bg-slate-50 border border-slate-100 px-4 py-3">
-                  <p className="font-semibold text-slate-900">独享 IP 池</p>
-                  <p className="text-slate-500 mt-1">隔离接入，避免抖动</p>
-                </div>
-                <div className="rounded-xl bg-slate-50 border border-slate-100 px-4 py-3">
-                  <p className="font-semibold text-slate-900">密钥托管</p>
-                  <p className="text-slate-500 mt-1">多重加密与审计</p>
-                </div>
-                <div className="rounded-xl bg-slate-50 border border-slate-100 px-4 py-3">
-                  <p className="font-semibold text-slate-900">异常熔断</p>
-                  <p className="text-slate-500 mt-1">分钟级限流切换</p>
-                </div>
-              </div>
-            </motion.div>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <motion.a 
+                href="https://vip.zen-ai.top/login" 
+                initial={{ opacity: 0, y: 16, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.65, delay: 0.32, type: "spring", stiffness: 320, damping: 24 }}
+                whileHover={{ y: -2, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-7 py-3 rounded-full bg-slate-900 text-white font-semibold shadow-[0_20px_50px_-20px_rgba(15,23,42,0.6)]"
+              >
+                立即接入
+              </motion.a>
+              <motion.a 
+                href="#pricing" 
+                initial={{ opacity: 0, y: 16, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.65, delay: 0.38, type: "spring", stiffness: 320, damping: 24 }}
+                whileHover={{ y: -2, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-7 py-3 rounded-full border border-slate-200 text-slate-900 bg-white hover:bg-slate-50 transition-colors duration-200 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.35)]"
+              >
+                Explore use cases
+              </motion.a>
+            </div>
           </div>
         </div>
       </motion.header>
