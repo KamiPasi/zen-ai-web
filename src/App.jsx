@@ -386,7 +386,7 @@ const App = () => {
   const packages = [
     {
       title: "Azure 特价分组",
-      price: "0.3~5 元/刀",
+      price: "0.3~4 元/刀",
       ratio: "3倍分组",
       icon: AzureLogo,
       desc: ["特惠价格", "极致的稳定性性价比"],
@@ -402,8 +402,8 @@ const App = () => {
     },
       {
       title: "Gemini 最火爆分组",
-      price: "0.5 元/刀",
-      ratio: "5倍分组",
+      price: "0.7 元/刀",
+      ratio: "7倍分组",
       icon: GeminiLogo,
       desc: ["Gemini官方转发", "Google原生通道", "性价比之选"],
       tags: ["热销", "高性价比", "Google"],
@@ -411,19 +411,19 @@ const App = () => {
     },
     {
       title: "AWS 官转分组",
-      price: "2.8 元/刀",
-      ratio: "28倍分组",
+      price: "2.78 元/刀",
+      ratio: "27.8倍分组",
       icon: AWSLogo,
       desc: ["AWS Claude官方转发", "纯AWS官转通道"],
       tags: ["Claude", "AWS"],
     },
     {
-      title: "火山分组",
-      price: "0.6 元/刀",
-      ratio: "6倍分组",
+      title: "千问分组",
+      price: "0.4 元/刀",
+      ratio: "4倍分组",
       icon: VolcanoLogo,
-      desc: ["火山企业官方6折转发", "支持doubao系列模型"],
-      tags: ["火山", "doubao"],
+      desc: ["阿里企业官方6折转发", "支持千问系列模型"],
+      tags: ["阿里", "千问"],
     },
         {
       title: "Deepseek分组",
