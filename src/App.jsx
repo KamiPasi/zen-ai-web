@@ -393,16 +393,16 @@ const App = () => {
       tags: ["限时特价", "Azure官方转发", "超高并发支持"]
     },
     {
-      title: "AZ-Claude 分组",
-      price: "1.0 元/刀",
-      ratio: "10倍分组",
+      title: "CC-MAX 分组",
+      price: "1.5 元/刀",
+      ratio: "15倍分组",
       icon: AzureLogo,
-      desc: ["Azure Claude官方转发", "高性价比Claude通道"],
-      tags: ["Claude", "Azure"],
+      desc: ["Claude Code官方转发", "高性价比Claude通道"],
+      tags: ["Claude", "CC"],
     },
       {
       title: "Gemini 最火爆分组",
-      price: "0.7 元/刀",
+      price: "0.8 元/刀",
       ratio: "7倍分组",
       icon: GeminiLogo,
       desc: ["Gemini官方转发", "Google原生通道", "性价比之选"],
@@ -435,8 +435,8 @@ const App = () => {
     },
     {
       title: "Grok 分组",
-      price: "2.0 元/刀",
-      ratio: "20倍分组",
+      price: "2.5 元/刀",
+      ratio: "25倍分组",
       icon: GrokLogo,
       desc: ["Grok全模型支持", "官方转发", "非逆向工程"],
       tags: ["xAI", "Grok"],
