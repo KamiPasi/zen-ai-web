@@ -394,19 +394,19 @@ const App = () => {
     },
     {
       title: "CC-MAX 分组",
-      price: "1.5 元/刀",
-      ratio: "15倍分组",
-      icon: AzureLogo,
+      price: "1.8 元/刀",
+      ratio: "18倍分组",
+      icon: AWSLogo,
       desc: ["Claude Code官方转发", "高性价比Claude通道"],
       tags: ["Claude", "CC"],
     },
       {
       title: "Gemini 最火爆分组",
-      price: "0.8 元/刀",
-      ratio: "7倍分组",
+      price: "0.8~2元/刀",
+      ratio: "8倍分组",
       icon: GeminiLogo,
       desc: ["Gemini官方转发", "Google原生通道", "性价比之选"],
-      tags: ["热销", "高性价比", "Google"],
+      tags: ["热销", "高性价比", "Google", "超高并发支持"],
       highlight: true
     },
     {
